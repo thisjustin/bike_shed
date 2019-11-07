@@ -15,3 +15,8 @@ def index(request):
 def detail(request, bike_id):
     bike = get_object_or_404(Bike, pk=bike_id)
     return render(request, 'bikes/detail.html', {'bike': bike})
+
+
+def create(request):
+    brand_list = Brand.objects.all()[:50]
+    return render(request, 'bikes/create.html', {'brand_list': brand_list})

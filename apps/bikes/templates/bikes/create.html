@@ -6,13 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" type="text/css" href="{% static 'bikes/css/style.css' %}">
-<title>Bike Shed - dashboard</title>
+<title>Bike Shed - creating</title>
 
 <body>
-{% if bike_list %}
+{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+
+{% if brand_list %}
     <ul>
-        {% for bike in bike_list %}
-            <li><a href="#"></a>{{ bike.brand }}</li>
+        {% for brand in brand_list %}
+            <li><a href="#"></a>{{ brand.name }}</li>
         {% endfor %}
     </ul>
 {% endif %}

@@ -4,4 +4,4 @@ venv
 LICENSE
 db.sqlite3
 
-static
+/static
