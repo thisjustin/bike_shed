@@ -1,16 +1,19 @@
+import os
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 
-# TODO: Test image path via default image
-img_path = 'static/images/'
+img_path = 'apps/bikes/static/bikes/img/'
 
 
 class Brand(models.Model):
     """'blank & null attributes enables by default"""
     name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to=img_path)
+
+    def get_logo(self):
+        return os.path.basename(self.logo.name)
 
     def __str__(self):
         return self.__class__.__name__
@@ -36,6 +39,9 @@ class Bike(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
+
+    def get_image(self):
+        return os.path.basename(self.image.name)
 
     def __str__(self):
         return self.__class__.__name__
