@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input {
+    padding: 12px 20px;
+    margin: 4px 0;
+    border: 2px solid lightgray;
+    box-sizing: border-box;
+    transition: 0.5s;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid gray;
+}
+
+img.bike {
+    width: 200px;
+    max-width: 200px;
+    height: 200px;
+    max-height: 200px;
+}
+
+img.logo {
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    max-height: 100px;
+}
+
+.container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 'header header header header header header' 'aside section . . article article' 'aside section . . . .';
+}
+
+.container__item {
+    text-align: center;
+}
+
+.header {
+    grid-area: header;
+    border-bottom: 1px solid #ccc;
+    background: whitesmoke;
+    padding: 40px;
+}
+
+.header__title,
+.header__action {
+    padding: 0 20px 0 20px;
+    font-family: monospace;
+}
+
+.header__title:hover,
+.header__action:hover {
+    cursor: pointer;
+}
+
+.header__title {
+    float: left;
+    font-size: 1.5em;
+}
+
+.header__action {
+    float: right;
+    color: darkslategray;
+}
+
+.section {
+    padding: 20px 10px;
+    margin: 10px 20px;
+}
+
+.section:hover {
+    cursor: pointer;
+}
+
+.grid-aside,
+.grid-section,
+.grid-logo {
+    padding-top: 20px;
+    margin: 20px;
+}
+
+.grid-aside,
+.grid-section {
+    text-align: left;
+    float: left;
+}
+
+.grid-aside {
+    grid-area: aside;
+}
+
+.grid-section {
+    grid-area: section;
+}
+
+.grid-logo {
+    grid-area: article;
+    text-align: right;
+}

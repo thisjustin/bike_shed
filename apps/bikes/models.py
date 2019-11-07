@@ -9,7 +9,7 @@ img_path = 'apps/bikes/static/bikes/img/'
 
 class Brand(models.Model):
     """'blank & null attributes enables by default"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     logo = models.ImageField(upload_to=img_path)
 
     def get_logo(self):
@@ -19,7 +19,6 @@ class Brand(models.Model):
         return self.__class__.__name__
 
 
-# TODO: Check req attribute for all fields
 class Bike(models.Model):
     TYPE_CHOICES = (
         ("MN", "Mountain"),

@@ -9,15 +9,61 @@
 <title>Bike Shed - creating</title>
 
 <body>
-{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+<div class="container">
 
-{% if brand_list %}
-    <ul>
-        {% for brand in brand_list %}
-            <li><a href="#"></a>{{ brand.name }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+    <div class="container__item header">
+        <span class="header__title" onclick="location.href='{% url 'bikes:index' %}'">Bike Shed</span>
+        <span class="header__action" onclick="location.href='{% url 'bikes:create' %}'">Add Bike</span>
+    </div>
+
+    <form action="{% url 'bikes:create' %}" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+
+        <div class="container__item grid-aside">
+
+            <input id="brand" name="brand" list="brand_list" placeholder="Select brand" required><br/>
+            <datalist id="brand_list">
+                {% for brand in brand_list %}
+                    <option value="{{ brand.name }}"></option>
+                {% endfor %}
+            </datalist>
+
+            <input type="text" name="model" id="model" placeholder="Model" required><br/>
+            <input type="number" name="price" id="price" placeholder="Price" max="10000000000" required> &ensp;
+            <input type="number" name="size" id="size" placeholder="Size" min="12" max="30" required><br/>
+
+            <input id="_type" name="_type" list="type_list" placeholder="Select type" required><br/>
+            <datalist id="type_list">
+                <option value="MN">Mountain</option>
+                <option value="HB">Hybrid</option>
+                <option value="RD">Road</option>
+            </datalist>
+
+            <input type="text" name="headline" id="headline" placeholder="Headline" required><br/>
+            <textarea name="description" id="description" rows="10" cols="30" placeholder="description"
+                      required></textarea><br/>
+
+            <input type="submit" value="Send">
+            {% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+
+        </div>
+        <div class="container__item grid-section">
+            <img class="bike" src="{% static 'bikes/img/github.jpg' %}" id="image"/><br/>
+            <input type="file" id="files" name="image" required/>
+            <script>
+                document.getElementById("files").onchange = function () {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById("image").src = e.target.result;
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                };
+            </script>
+        </div>
+    </form>
+
+
+</div>
 </body>
 
 </html>

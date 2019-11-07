@@ -9,20 +9,34 @@
 <title>Bike Shed - details</title>
 
 <body>
-{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+<div class="container">
 
-<ul>
-    <li>{{ bike.brand.name }}</li>
-    <li>{{ bike.model }}</li>
-    <li>{{ bike.headline }}</li>
-    <li>{{ bike.description }}</li>
-    <li>{{ bike.price }}</li>
-    <li>{{ bike.size }}</li>
-</ul>
+    <div class="container__item header">
+        <span class="header__title" onclick="location.href='{% url 'bikes:index' %}'">Bike Shed</span>
+        <span class="header__action" onclick="location.href='{% url 'bikes:create' %}'">Add Bike</span>
+    </div>
 
-<img src="{% static 'bikes/img/'|add:bike.get_image %}" alt="{{ bike.get_image }}">
-<img src="{% static 'bikes/img/'|add:bike.brand.get_logo %}" alt="{{ bike.brand.get_logo }}">
 
+    {% if bike %}
+        <div class="container__item grid-aside">
+            <img class="bike" src="{% static 'bikes/img/'|add:bike.get_image %}" alt="{{ bike.get_image }}"><br/>
+            <span>{{ bike.headline }}</span><br/>
+            <span>{{ bike.description }}</span><br/>
+        </div>
+        <div class="container__item grid-section">
+            <span>{{ bike.model }}</span><br/>
+            <span>{{ bike.price }}</span><br/>
+            <span>{{ bike.size }}</span><br/>
+        </div>
+        <div class="container__item grid-logo">
+            <img class="logo" src="{% static 'bikes/img/'|add:bike.brand.get_logo %}" alt="{{ bike.brand.get_logo }}">
+            <br/>
+            <span>{{ bike.brand.name }}</span><br/>
+        </div>
+
+    {% endif %}
+    {% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+</div>
 </body>
 
 </html>

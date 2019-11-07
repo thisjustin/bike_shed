@@ -9,13 +9,25 @@
 <title>Bike Shed - dashboard</title>
 
 <body>
-{% if bike_list %}
-    <ul>
+<div class="container">
+
+    <div class="container__item header">
+        <span class="header__title" onclick="location.href='{% url 'bikes:index' %}'">Bike Shed</span>
+        <span class="header__action" onclick="location.href='{% url 'bikes:create' %}'">Add Bike</span>
+    </div>
+
+    {% if bike_list %}
         {% for bike in bike_list %}
-            <li><a href="#"></a>{{ bike.brand }}</li>
+            <div class="container__item section" onclick="location.href='{% url 'bikes:detail' bike.id %}'">
+                <img class="bike" src="{% static 'bikes/img/'|add:bike.get_image %}" alt="{{ bike.get_image }}"><br/>
+                <span>{{ bike.model }}</span><br/>
+                <span>{{ bike.price }}$</span><br/>
+                <span>{{ bike.headline }}</span><br/>
+            </div>
         {% endfor %}
-    </ul>
-{% endif %}
+    {% endif %}
+
+</div>
 </body>
 
 </html>
