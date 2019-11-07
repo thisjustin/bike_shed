@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bike Shed - details</title>
+
+<body>
+{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+
+<ul>
+    <li>{{ bike.brand.name }}</li>
+    <li>{{ bike.model }}</li>
+    <li>{{ bike.headline }}</li>
+    <li>{{ bike.description }}</li>
+    <li>{{ bike.price }}</li>
+    <li>{{ bike.size }}</li>
+</ul>
+
+<img src="{% static 'bikes/img/'|add:bike.get_image %}" alt="{{ bike.get_image }}">
+<img src="{% static 'bikes/img/'|add:bike.brand.get_logo %}" alt="{{ bike.brand.get_logo }}">
+
+</body>
+
+</html>
